@@ -10,3 +10,23 @@ The only way to recover the access to the cluster, is via the IAM user or Role t
 This is not viable all the times, and this project aims to "bypass" this limitation, adding a cluster-admin shell exposed with Gotty via LoadBalancer/NodePort and password protected.
 
 This project **must** be used with caution, and **only** while operating in the `aws-auth` ConfigMap
+
+## Deploy with Kustomize
+
+In the `kustomize` directory, change the value of the `CREDENTIALS` environment variable with your desired username and password.
+
+Deploy the project with:
+
+```bash
+cd kustomize
+kustomize build . | kubectl apply -f -
+```
+
+A deployment named `eks-aws-auth-backdoor` will be created in the `kube-system` namespace, with a ClusterRoleBinding and a ServiceAccount
+attached to `cluster-admin` ClusterRole.
+
+Get the URL of the LoadBalancer with:
+
+```bash
+kubectl get svc eks-aws-auth-backdoor -n kube-system
+```
