@@ -1,0 +1,8 @@
+version: '3'
+services:
+  eks-aws-auth-backdoor:
+    build:
+      context: docker
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
