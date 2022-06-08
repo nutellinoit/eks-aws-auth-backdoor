@@ -7,7 +7,7 @@ Sometimes when working with `aws-auth` ConfigMap in EKS clusters, there is a pos
 
 The only way to recover the access to the cluster, is via the IAM user or Role that who first created the cluster.
 
-This is not viable all the times, and this project aims to "bypass" this limitation, adding a cluster-admin shell exposed with Gotty via LoadBalancer/NodePort and password protected.
+This is not viable all the times, and this project aims to "bypass" this limitation, adding a cluster-admin shell exposed with [ttyd](https://github.com/tsl0922/ttyd) via LoadBalancer/NodePort and password protected.
 
 This project **must** be used with caution, and **only** while operating in the `aws-auth` ConfigMap
 
