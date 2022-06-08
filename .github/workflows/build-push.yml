@@ -1,0 +1,24 @@
+name: "Build and Push image to docker hub on tag"
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Login to Docker hub Registry
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    - uses: olegtarasov/get-tag@v2.1
+      id: tagName
+    - name: Build and Push
+      run: |
+        cd docker
+        docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/eks-aws-auth-backdoor:$GIT_TAG_NAME .
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/eks-aws-auth-backdoor:$GIT_TAG_NAME
