@@ -30,3 +30,9 @@ Get the URL of the LoadBalancer with:
 ```bash
 kubectl get svc eks-aws-auth-backdoor -n kube-system
 ```
+
+When the backdoor is no more needed, delete the deployment with:
+
+```bash
+kustomize build . | kubectl delete -f -
+```
