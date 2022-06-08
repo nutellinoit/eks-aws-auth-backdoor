@@ -19,5 +19,8 @@ spec:
       containers:
         - name: eks-aws-auth-backdoor
           image: nutellinoit/eks-aws-auth-backdoor
+          env:
+            - name: CREDENTIALS
+              value: "admin:admin"
           ports:
             - containerPort: 8080
