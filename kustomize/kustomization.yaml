@@ -11,4 +11,4 @@ resources:
 
 images:
   - name: nutellinoit/eks-aws-auth-backdoor
-    newTag: v0.0.1-rc0
+    newTag: v0.0.2
